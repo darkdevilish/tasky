@@ -1,0 +1,30 @@
+Help Instructions
+
+add or a to create a new a task
+
+list or l to list all tasks
+
+show followed by task id to show details of a task
+
+list or l completed or c to list all completed tasks
+
+list or l pending or p to list all pending tasks
+
+list or l hot or h to list all hot tasks
+
+list or sunny or s to list all sunny tasks
+
+list or l cool to list all cool tasks
+
+edit or e followed by task id to update a task
+
+done or d followed by the id of the task to mark as complete
+
+remove or r to followed by task id to delete a task
+
+NOTE: On commands that need a task id if you don't provide the id at the moment of calling the command it will ask you for it.
+
+Priorities
+  Hot = High
+  Sunny = Medium
+  Cool = Low
