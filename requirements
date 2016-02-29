@@ -1,0 +1,84 @@
+Task Crud
+Task can be completed or pending
+Task can have description
+Task have a priority
+
+Task have a title and can have a description.
+Task title can't be blank.
+If task not marked as completed will be pending.
+Task priority can be cool, sunny or hot.
+
+Task Class
+  Attributes
+    Title
+    Description
+    Completed
+    Priority
+
+  Operations
+    Create
+    Read
+    Update
+    Delete
+
+Welcome Screen
+  Welcome Message
+  List of Commands
+  List of all pending task order by priority
+
+Welcome Message
+  Howdy! Welcome to your Tasky
+
+List of Commands
+  help or h for help
+  new or n to add a task
+  list or l to list all tasks
+  edit or e to update a task
+  remove or r to delete a task
+  quit or q to exit
+
+help or h for help
+  new or n to add a task
+  list or l to list all tasks
+  show followed by task id to show details of a task
+  list or l completed or c to list all completed tasks
+  list or l pending or p to list all pending tasks
+  list or l hot or h to list all hot tasks
+  list or sunny or s to list all sunny tasks
+  list or l cool to list all cool tasks
+  edit or e followed by task id to update a task
+  done or d followed by the id of the task to mark as complete
+  remove or r to followed by task id to delete a task
+
+  NOTE: On commands that need a task id if you don't provide the id at the moment of calling the command it will ask you for it.
+
+  Priorities
+    Hot = High
+    Sunny = Medium
+    Cool = Low
+
+List of Tasks
+  ID    TITLE    STATUS
+Show task
+  ID    TITLE STATUS
+  Description
+Adding a New Task
+  Please provide the task title
+  Please provide the task description
+  please provide the task priority
+  Can be hot, sunny or cool
+Progress
+  Always show progress of tasks at the top of every screen that you are listing tasks
+  80% | 8 out of 10 tasks completed
+Edit
+  Please provide id of the task you would like to update
+  Task title
+  Please provide new title
+  Please provide new description
+  Please provide new priority
+Done
+  Please provide the id of the task you would like to mark as done
+Remove
+  Please provide the id of the task you would like to delete
+  Are you sure that you want to delete this task
+  ID    TITLE    STATUS
