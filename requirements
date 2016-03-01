@@ -74,7 +74,9 @@ Edit
   Please provide id of the task you would like to update
   Task title
   Please provide new title
+  Task description
   Please provide new description
+  Task priority
   Please provide new priority
 Done
   Please provide the id of the task you would like to mark as done

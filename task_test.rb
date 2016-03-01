@@ -2,16 +2,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require_relative 'task'
 require 'factory_girl'
+require_relative 'factories'
 include FactoryGirl::Syntax::Methods
-
-FactoryGirl.define do
-  factory :task do
-    sequence(:title) { |n| "Task title #{n}" }
-    description "Description"
-    completed false
-    priority 1
-  end
-end
 
 describe Task do
 
