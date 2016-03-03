@@ -1,14 +1,8 @@
 require "sequel"
 
-class DbConnection
-  attr_writer :db_name
-  DB = Sequel.sqlite(@db_name)
+  DB = Sequel.sqlite("tasks.db")
 
-  def initialize(db)
-    @db_name = db
-  end
 
-  def connect
     unless DB.table_exists? :tasks
       DB.create_table(:tasks) do
         primary_key :id
@@ -18,10 +12,6 @@ class DbConnection
         Integer :priority
       end
     end
-  end
-
-end
-DbConnection.new("tasks_test.db").connect
 
 class Sequel::Model
   alias_method :save!, :save

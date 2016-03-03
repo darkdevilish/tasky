@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative 'task'
+require_relative '../task'
 require 'factory_girl'
 require_relative 'factories'
 include FactoryGirl::Syntax::Methods

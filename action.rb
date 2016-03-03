@@ -10,10 +10,7 @@ class Action
   end
 
   def add(input)
-    task = Task.new
-    task.title = input[:title]
-    task.description = input[:description]
-    task.priority = input[:priority]
+    task = Task.new(input)
 
     if task.valid?
       task.save
@@ -24,15 +21,11 @@ class Action
   end
 
   def list
-    Task.dataset.order(:priority).all
+    Task.where(:completed=>false).order(:priority).all
   end
 
   def list_completed
     Task.where(:completed=>true).all
-  end
-
-  def list_pending
-    Task.where(:completed=>false).all
   end
 
   def list_hot
@@ -73,6 +66,7 @@ class Action
       @error
     else
       Task[id].update(:completed => true)
+      "Another one bites the dust!"
     end
   end
 
@@ -80,7 +74,4 @@ class Action
     Task[id].destroy
   end
 
-  def quit
-    :quit
-  end
 end

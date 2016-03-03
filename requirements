@@ -58,9 +58,9 @@ help or h for help
     Cool = Low
 
 List of Tasks
-  ID    TITLE    STATUS
+  ID    TITLE    STATUS PRIORITY
 Show task
-  ID    TITLE STATUS
+  ID    TITLE STATUS PRIORITY
   Description
 Adding a New Task
   Please provide the task title
