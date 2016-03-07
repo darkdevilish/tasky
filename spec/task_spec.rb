@@ -1,9 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../task'
-require 'factory_girl'
-require_relative 'factories'
-include FactoryGirl::Syntax::Methods
 
 describe Task do
 
@@ -11,40 +8,34 @@ describe Task do
     Task.dataset.destroy
   end
 
-  let(:task1) { create :task }
-  let(:task_test) { build :task }
+  it "returns all the tasks order by priority" do
+    pending_tasks = Task.where(:completed=>false).order(:priority).all
 
-  it 'validates input errors' do
-    Task.new.valid?.must_equal false
-    task_test.valid?.must_equal true
+    Task.pending.must_equal pending_tasks
   end
 
-  it 'creates a new task' do
-    task_test.save.wont_be_nil
+  it "returns all completed tasks" do
+    completed_tasks = Task.where(:completed=>true).all
+
+    Task.completed.must_equal completed_tasks
   end
 
-  it 'list all tasks' do
-    3.times do
-      create :task
-    end
+  it "returns all hot tasks" do
+    hot_tasks = Task.where(:priority=>1).all
 
-    Task.count.must_equal 3
+    Task.hot.must_equal hot_tasks
   end
 
-  it 'reads a task' do
-    Task[task1.id].title.must_equal task1.title
+  it "returns all sunny tasks" do
+    sunny_tasks = Task.where(:priority=>2).all
+
+    Task.sunny.must_equal sunny_tasks
   end
 
-  it 'marks task as completed' do
-    Task[task1.id].update(:completed=>true)
+  it "returns all cool tasks" do
+    cool_tasks = Task.where(:priority=>3).all
 
-    Task[task1.id].completed.must_equal true
-  end
-
-  it 'deletes a task' do
-    Task[task1.id].destroy
-
-    Task[task1.id].must_be_nil
+    Task.cool.must_equal cool_tasks
   end
 
 end

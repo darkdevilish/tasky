@@ -84,3 +84,21 @@ Remove
   Please provide the id of the task you would like to delete
   Are you sure that you want to delete this task
   ID    TITLE    STATUS
+
+Action
+  invalid_action
+  valid_action?
+  get
+  run
+
+invalid_action
+  it outputs an error if not valid
+
+valid_action?
+  it returns true if valid
+
+get
+  it receives user input
+
+run
+  it runs the action class

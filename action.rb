@@ -1,77 +1,54 @@
-require_relative 'task'
-
 class Action
-  def initialize
-    @error = "Task not found"
+  class Config
+    ACTIONS = {
+      :h => :help,
+      :a => :add,
+      :l => :list,
+      :s => :show,
+      :d => :done,
+      :r => :remove,
+      :q => :quit
+    }
+
+    def self.actions ; ACTIONS ; end
   end
 
-  def help
-    File.open("help", "r") { |line| line.map { |l| l } }
+  attr_writer :input
+
+  def initialize(input="")
+    @input = input
   end
 
-  def add(input)
-    task = Task.new(input)
-
-    if task.valid?
-      task.save
-      "Task Created!"
+  def valid_action?
+    if short_action_name?
+      Action::Config.actions.include?(@input.to_sym)
     else
-      "Title #{task.errors[:title][0]}"
+      Action::Config.actions.has_value?(@input.to_sym)
     end
   end
 
-  def list
-    Task.where(:completed=>false).order(:priority).all
-  end
-
-  def list_completed
-    Task.where(:completed=>true).all
-  end
-
-  def list_hot
-    Task.where(:priority=>1).all
-  end
-
-  def list_sunny
-    Task.where(:priority=>2).all
-  end
-
-  def list_cool
-    Task.where(:priority=>3).all
-  end
-
-  def show(id)
-    if Task[id] == nil
-      @error
+  def short_action_name?
+    if @input.length == 1
+      true
     else
-      Task[id]
+      false
     end
   end
 
-  def edit(id, input)
-    if Task[id] == nil
-      @error
-    else
-      if input[:title].empty?
-        "Title is not present"
+  def run
+    if valid_action?
+      if short_action_name?
+        Object.const_get(Action::Config.actions[@input.capitalize]).new.run
       else
-        Task[id].update(input)
-        "Task Updated!"
+        Object.const_get(@input.capitalize).new.run
       end
-    end
-  end
-
-  def done(id)
-    if Task[id] == nil
-      @error
     else
-      Task[id].update(:completed => true)
-      "Another one bites the dust!"
+      invalid_action
     end
   end
 
-  def remove(id)
-    Task[id].destroy
+  def invalid_action
+    print "\n" + "*" * 12 + " " * 3 + "Invalid Command" + " " * 3 + "*" * 12 + "\n\n"
   end
 
-end
+ end
