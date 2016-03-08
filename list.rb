@@ -22,38 +22,34 @@ class List
   end
 
   def pending
-    puts "\nPending Tasks\n".center(50)
-    Task.header
-    Task.pending.each { |task| Task.show(task) }
+    lists(:pending)
   end
 
   def completed
-    puts "\nCompleted Tasks\n".center(50)
-    Task.header
-    Task.completed.each { |task| Task.show(task) }
+    lists(:completed)
   end
 
   def hot
-    puts "\nHot Tasks\n".center(50)
-    Task.header
-    Task.hot.each { |task| Task.show(task) }
+    lists(:hot)
   end
 
   def sunny
-    puts "\nSunny Tasks\n".center(50)
-    Task.header
-    Task.sunny.each { |task| Task.show(task) }
+    lists(:sunny)
   end
 
   def cool
-    puts "\nCool Tasks\n".center(50)
-    Task.header
-    Task.cool.each { |task| Task.show(task) }
+    lists(:cool)
   end
 
   def run
     option = option?
     call(option)
+  end
+
+  def lists(option)
+    puts "\n#{option.to_s.capitalize} Tasks\n".center(50)
+    Task.header
+    Task.method(option).call.each { |task| Task.show(task) }
   end
 
 end
