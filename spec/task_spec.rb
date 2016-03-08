@@ -4,10 +4,6 @@ require_relative '../task'
 
 describe Task do
 
-  before do
-    Task.dataset.destroy
-  end
-
   it "returns all the tasks order by priority" do
     pending_tasks = Task.where(:completed=>false).order(:priority).all
 
