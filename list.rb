@@ -22,23 +22,23 @@ class List
   end
 
   def pending
-    lists(:pending)
+    display(:pending)
   end
 
   def completed
-    lists(:completed)
+    display(:completed)
   end
 
   def hot
-    lists(:hot)
+    display(:hot)
   end
 
   def sunny
-    lists(:sunny)
+    display(:sunny)
   end
 
   def cool
-    lists(:cool)
+    display(:cool)
   end
 
   def run
@@ -46,7 +46,7 @@ class List
     call(option)
   end
 
-  def lists(option)
+  def display(option)
     puts "\n#{option.to_s.capitalize} Tasks\n".center(50)
     Task.header
     Task.method(option).call.each { |task| Task.show(task) }
