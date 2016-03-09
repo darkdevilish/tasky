@@ -1,3 +1,6 @@
+require_relative 'action'
+require_relative 'list'
+
 def welcome_msg
   print "\n\n" + "*" * 12 + "  " * 2
   print "Howdy! Welcome to your Tasky" + "  " *2
@@ -5,17 +8,18 @@ def welcome_msg
 end
 
 def action_list
-  puts "\nActions: #{ACTIONS.values.join(" | ")}\n\n"
+  puts "\nActions: #{Action::Config.actions.values.join(" | ")}\n\n"
 end
 
-def init
-  action = nil
-  welcome_msg
-  list
-  until action == :quit
-    action_list
-    print "\n \n >  "
-    user_input = gets.chomp
-    action = call_action(user_input)
-  end
+action = nil
+welcome_msg
+List.new.pending
+action_object = Action.new
+
+until action == :quit
+  action_list
+  print "\n \n >  "
+  user_input = gets.chomp
+  action_object.input = user_input
+  action = action_object.run
 end

@@ -1,16 +1,5 @@
 require "sequel"
-
-DB = Sequel.sqlite("tasks.db")
-
-unless DB.table_exists? :tasks
-  DB.create_table(:tasks) do
-    primary_key :id
-    String :title
-    String :description
-    Boolean :completed
-    Integer :priority
-  end
-end
+require_relative 'db'
 
 class Sequel::Model
   alias_method :save!, :save
@@ -62,11 +51,11 @@ class Task < Sequel::Model
     updating_msg
   end
 
-  def self.valid_task?(task, method)
+  def self.valid_task?(task, name)
     if task == nil
-      task_not_found
+      not_found
     else
-      send(method(task))
+      send(name, task)
     end
   end
 
@@ -84,7 +73,7 @@ class Task < Sequel::Model
     end
   end
 
-  def display(task)
+  def self.display(task)
     header
     show(task)
     puts "Task Description: "

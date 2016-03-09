@@ -1,3 +1,12 @@
+require_relative 'task'
+require_relative 'ask'
+require_relative 'help'
+require_relative 'add'
+require_relative 'show'
+require_relative 'done'
+require_relative 'remove'
+require_relative 'quit'
+
 class Action
   class Config
     ACTIONS = {
@@ -13,7 +22,7 @@ class Action
     def self.actions ; ACTIONS ; end
   end
 
-  attr_writer :input
+  attr_accessor :input
 
   def initialize(input="")
     @input = input
@@ -38,7 +47,7 @@ class Action
   def run
     if valid_action?
       if short_action_name?
-        Object.const_get(Action::Config.actions[@input.capitalize]).new.run
+        Object.const_get(Action::Config.actions[@input.to_sym].to_s.capitalize).new.run
       else
         Object.const_get(@input.capitalize).new.run
       end

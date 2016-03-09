@@ -2,7 +2,7 @@ class Help
   attr_reader :file_path
   APP_ROOT = File.dirname(__FILE__)
 
-  def initialize(file_path)
+  def initialize(file_path="help")
     @file_path = set_file_path(file_path)
   end
 
