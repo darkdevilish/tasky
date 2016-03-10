@@ -67,7 +67,7 @@ class Task < Sequel::Model
 
   def self.show(task)
     if task == nil
-      task_not_found
+      not_found
     else
       task_table(task)
     end

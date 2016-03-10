@@ -3,8 +3,12 @@ class Remove
   def run
     msg = "Please provide the id of the task that you would like to delete: "
     id = Ask.question(msg)
-    confirm = confirm(Task[id])
-    destroy?(confirm, Task[id])
+    if Task[id] == nil
+      Task.not_found
+    else
+      confirm = confirm(Task[id])
+      destroy?(confirm, Task[id])
+    end
   end
 
 
@@ -17,7 +21,7 @@ class Remove
   end
 
   def destroy?(input, task)
-    input = validate(input)
+    valid_input = validate(input)
     if input == "y"
       task.destroy
       print "\n" + "*" * 12 + "  " * 5

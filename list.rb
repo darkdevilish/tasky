@@ -3,20 +3,27 @@ class List
   OPTIONS = [ :all, :pending, :completed, :hot, :sunny, :cool ]
 
   def call(option)
-    send(OPTIONS[option.to_sym])
+    send(option.to_sym)
   end
 
   def option?
+    print "What you would like to list: "
     option = gets.chomp
     until OPTIONS.include?(option.to_sym)
-      print "all | pending | completed | hot | sunny | cool"
+      valid_options
       option = gets.chomp
     end
     option
   end
 
+  def valid_options
+    puts "\n" + "Valid Options".center(50) + "\n"
+    puts "\nall | pending | completed | hot | sunny | cool\n"
+    print "\nPlease enter a valid option: "
+  end
+
   def all
-    puts "\nAll Tasks\n".center(50)
+    puts "\n" + "  All Tasks  ".center(50) + "\n"
     Task.header
     Task.dataset.all.each { |task| Task.show(task) }
   end
@@ -47,7 +54,7 @@ class List
   end
 
   def display(option)
-    puts "\n#{option.to_s.capitalize} Tasks\n".center(50)
+    puts "\n" + "  #{option.to_s.capitalize} Tasks  ".center(50) + "\n"
     Task.header
     Task.method(option).call.each { |task| Task.show(task) }
   end
