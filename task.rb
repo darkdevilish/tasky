@@ -24,7 +24,7 @@ class Task < Sequel::Model
     where(:completed=>false).order(:priority).all
   end
 
-  def self.completed
+  def self.done
     where(:completed=>true).all
   end
 

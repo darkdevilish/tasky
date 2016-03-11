@@ -1,6 +1,6 @@
 class List
 
-  OPTIONS = [ :all, :pending, :completed, :hot, :sunny, :cool ]
+  OPTIONS = [ :all, :pending, :done, :hot, :sunny, :cool ]
 
   def call(option)
     send(option.to_sym)
@@ -32,8 +32,8 @@ class List
     display(:pending)
   end
 
-  def completed
-    display(:completed)
+  def done
+    display(:done)
   end
 
   def hot

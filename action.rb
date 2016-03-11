@@ -1,12 +1,3 @@
-require_relative 'task'
-require_relative 'ask'
-require_relative 'help'
-require_relative 'add'
-require_relative 'show'
-require_relative 'done'
-require_relative 'remove'
-require_relative 'quit'
-
 class Action
   class Config
     ACTIONS = {
@@ -22,7 +13,7 @@ class Action
     def self.actions ; ACTIONS ; end
   end
 
-  attr_accessor :input
+  attr_writer :input
 
   def initialize(input="")
     @input = input

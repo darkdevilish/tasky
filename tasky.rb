@@ -1,5 +1,13 @@
 require_relative 'action'
+require_relative 'task'
+require_relative 'ask'
+require_relative 'help'
 require_relative 'list'
+require_relative 'add'
+require_relative 'show'
+require_relative 'done'
+require_relative 'remove'
+require_relative 'quit'
 
 def welcome_msg
   print "\n\n" + "*" * 12 + "  " * 2
