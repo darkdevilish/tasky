@@ -19,6 +19,14 @@ def action_list
   puts "\nActions: #{Action::Config.actions.values.join(" | ")}\n\n"
 end
 
+def show_progress
+  total_tasks = Task.dataset.all.count
+  total_tasks_done = Task.done.count
+  total_todo = Task.pending.count
+  percentage = total_tasks_done * 100 / (total_tasks.nonzero? || 1)
+  puts "\n" + "To Do #{total_todo} | #{percentage}% done".center(50)
+end
+
 action = nil
 welcome_msg
 List.new.pending
@@ -26,6 +34,7 @@ action_object = Action.new
 
 until action == :quit
   action_list
+  show_progress
   print "\n \n >  "
   user_input = gets.chomp
   action_object.input = user_input
