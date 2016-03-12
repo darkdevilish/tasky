@@ -1,13 +1,17 @@
-require_relative 'action'
-require_relative 'task'
-require_relative 'ask'
-require_relative 'help'
-require_relative 'list'
-require_relative 'add'
-require_relative 'show'
-require_relative 'done'
-require_relative 'remove'
-require_relative 'quit'
+#!/usr/bin/env/ruby
+
+APP_ROOT = File.dirname(__FILE__)
+
+require_relative "../lib/action"
+require_relative "../lib/task"
+require_relative "../lib/ask"
+require_relative "../lib/help"
+require_relative "../lib/list"
+require_relative "../lib/add"
+require_relative "../lib/show"
+require_relative "../lib/done"
+require_relative "../lib/remove"
+require_relative "..//lib/quit"
 
 def welcome_msg
   print "\n\n" + "*" * 12 + "  " * 2
