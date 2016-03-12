@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.authors = [ "Anthony Gonzalez" ]
   s.email = 'anthonyzg3@hotmail.com'
 
-  s.files = `ls-files`.split("\n")
-  s.executables   = `ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files = `git ls-files`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
   ['sqlite3', 'sequel'].each do |dep|
